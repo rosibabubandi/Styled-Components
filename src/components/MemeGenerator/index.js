@@ -52,7 +52,13 @@ class MemeGenerator extends Component {
     imageUrl: '',
     topText: '',
     bottomText: '',
-    fontSize: '',
+    fontSize: fontSizesOptionsList[0].optionId,
+    memeContainerValues: {
+      containerImageUrl: fontSizesOptionsList[0].optionId,
+      containerTopText: '',
+      containerBottomText: '',
+      textFontSize: '',
+    },
   }
 
   setImageUrl = event => {
@@ -92,37 +98,67 @@ class MemeGenerator extends Component {
 
     const {imageUrl, topText, bottomText, fontSize} = this.state
 
+    const memeContainerValuesObject = {
+      containerImageUrl: imageUrl,
+      containerTopText: topText,
+      containerBottomText: bottomText,
+      textFontSize: fontSize,
+    }
+
     if (
-      imageUrl !== '' &&
-      topText !== '' &&
-      bottomText !== '' &&
+      imageUrl !== '' ||
+      topText !== '' ||
+      bottomText !== '' ||
       fontSize !== ''
     ) {
       this.setState({
         isDisplayMeme: true,
+        memeContainerValues: memeContainerValuesObject,
       })
     }
   }
 
   getSmallDevicesMemeContainer = () => {
-    const {imageUrl, fontSize, topText, bottomText} = this.state
+    const {memeContainerValues} = this.state
+    const {
+      containerImageUrl,
+      containerTopText,
+      containerBottomText,
+      textFontSize,
+    } = memeContainerValues
     return (
-      <SmallDevicesImageContainer data-testid="meme" imageUrl={imageUrl}>
-        <TextInsideContainer fontSize={fontSize}>{topText}</TextInsideContainer>
-        <TextInsideContainer fontSize={fontSize}>
-          {bottomText}
+      <SmallDevicesImageContainer
+        data-testid="meme"
+        imageUrl={containerImageUrl}
+      >
+        <TextInsideContainer fontSize={textFontSize}>
+          {containerTopText}
+        </TextInsideContainer>
+        <TextInsideContainer fontSize={textFontSize}>
+          {containerBottomText}
         </TextInsideContainer>
       </SmallDevicesImageContainer>
     )
   }
 
   getAboveMediumDevicesMemeContainer = () => {
-    const {imageUrl, fontSize, topText, bottomText} = this.state
+    const {memeContainerValues} = this.state
+    const {
+      containerImageUrl,
+      containerTopText,
+      containerBottomText,
+      textFontSize,
+    } = memeContainerValues
     return (
-      <AboveMediumDevicesImageContainer data-testid="meme" imageUrl={imageUrl}>
-        <TextInsideContainer fontSize={fontSize}>{topText}</TextInsideContainer>
-        <TextInsideContainer fontSize={fontSize}>
-          {bottomText}
+      <AboveMediumDevicesImageContainer
+        data-testid="meme"
+        imageUrl={containerImageUrl}
+      >
+        <TextInsideContainer fontSize={textFontSize}>
+          {containerTopText}
+        </TextInsideContainer>
+        <TextInsideContainer fontSize={textFontSize}>
+          {containerBottomText}
         </TextInsideContainer>
       </AboveMediumDevicesImageContainer>
     )

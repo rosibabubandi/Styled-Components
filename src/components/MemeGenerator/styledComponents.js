@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const MainContainer = styled.div`
+  height: 100vh;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -8,12 +9,27 @@ export const MainContainer = styled.div`
   align-items: center;
   padding: 20px;
   @media screen and (min-width: 767px) {
+    height: 100vh;
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+  }
+`
+export const SecondContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  @media screen and (min-width: 767px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
   }
 `
 export const SmallDevicesMainContainer = styled.div`
@@ -34,7 +50,7 @@ export const SmallDevicesMainContainer = styled.div`
 `
 export const SmallDevicesImageContainer = styled.div`
   background-image: url(${props => props.imageUrl});
-  height: 180px;
+  height: 300px;
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -43,6 +59,7 @@ export const SmallDevicesImageContainer = styled.div`
   align-items: center;
   align-self: center;
   padding: 7px;
+  text-align: center;
   @media screen and (min-width: 767px) {
     display: none;
   }
@@ -132,6 +149,7 @@ export const AboveMediumDevicesImageContainer = styled.div`
   align-items: center;
   align-self: center;
   padding: 7px;
+  text-align: center;
   @media screen and (max-width: 768px) {
     display: none;
   }
