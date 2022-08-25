@@ -1,6 +1,7 @@
 import {Component} from 'react'
 
 import {
+  CommonContainer,
   MainContainer,
   SmallDevicesMainContainer,
   Heading,
@@ -12,7 +13,6 @@ import {
   SelectElement,
   OptionElement,
   MemeGenerateButton,
-  AboveMediumDevicesImageContainer,
 } from './styledComponents'
 
 const fontSizesOptionsList = [
@@ -48,7 +48,6 @@ const fontSizesOptionsList = [
 
 class MemeGenerator extends Component {
   state = {
-    isDisplayMeme: false,
     imageUrl: '',
     topText: '',
     bottomText: '',
@@ -112,13 +111,12 @@ class MemeGenerator extends Component {
       fontSize !== ''
     ) {
       this.setState({
-        isDisplayMeme: true,
         memeContainerValues: memeContainerValuesObject,
       })
     }
   }
 
-  getSmallDevicesMemeContainer = () => {
+  getMemeContainer = () => {
     const {memeContainerValues} = this.state
     const {
       containerImageUrl,
@@ -138,29 +136,6 @@ class MemeGenerator extends Component {
           {containerBottomText}
         </TextInsideContainer>
       </SmallDevicesImageContainer>
-    )
-  }
-
-  getAboveMediumDevicesMemeContainer = () => {
-    const {memeContainerValues} = this.state
-    const {
-      containerImageUrl,
-      containerTopText,
-      containerBottomText,
-      textFontSize,
-    } = memeContainerValues
-    return (
-      <AboveMediumDevicesImageContainer
-        data-testid="meme"
-        imageUrl={containerImageUrl}
-      >
-        <TextInsideContainer fontSize={textFontSize}>
-          {containerTopText}
-        </TextInsideContainer>
-        <TextInsideContainer fontSize={textFontSize}>
-          {containerBottomText}
-        </TextInsideContainer>
-      </AboveMediumDevicesImageContainer>
     )
   }
 
@@ -211,16 +186,15 @@ class MemeGenerator extends Component {
   }
 
   render() {
-    const {isDisplayMeme} = this.state
-
     return (
       <MainContainer>
         <SmallDevicesMainContainer>
           <Heading>Meme Generator</Heading>
-          {isDisplayMeme && this.getSmallDevicesMemeContainer()}
-          {this.getFormContainer()}
+          <CommonContainer>
+            {this.getMemeContainer()}
+            {this.getFormContainer()}
+          </CommonContainer>
         </SmallDevicesMainContainer>
-        {isDisplayMeme && this.getAboveMediumDevicesMemeContainer()}
       </MainContainer>
     )
   }

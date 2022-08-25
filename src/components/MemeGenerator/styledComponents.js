@@ -18,20 +18,6 @@ export const MainContainer = styled.div`
     padding: 20px;
   }
 `
-export const SecondContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-  @media screen and (min-width: 767px) {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-  }
-`
 export const SmallDevicesMainContainer = styled.div`
   background-color: #ffffff;
   display: flex;
@@ -61,7 +47,18 @@ export const SmallDevicesImageContainer = styled.div`
   padding: 7px;
   text-align: center;
   @media screen and (min-width: 767px) {
-    display: none;
+    background-image: url(${props => props.imageUrl});
+    margin-top: 30px;
+    height: 500px;
+    background-size: cover;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-self: center;
+    padding: 7px;
+    text-align: center;
   }
 `
 export const Heading = styled.h1`
@@ -137,20 +134,19 @@ export const MemeGenerateButton = styled.button`
   border-radius: 10px;
   margin-top: 10px;
 `
-export const AboveMediumDevicesImageContainer = styled.div`
-  background-image: url(${props => props.imageUrl});
-  margin-top: 30px;
-  height: 500px;
-  background-size: cover;
-  width: 45%;
+export const CommonContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
-  align-self: center;
-  padding: 7px;
-  text-align: center;
-  @media screen and (max-width: 768px) {
-    display: none;
+  margin: auto;
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
   }
 `
